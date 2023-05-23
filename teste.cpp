@@ -24,8 +24,9 @@ void testarModais(Titulo titulo)
     std::string method;
 
     // Descrição do titulo
-    std::cout<<std::endl<<"Titulo: "<<titulo.nome<<std::endl <<"Valor nominal: "<<titulo.valorNominal<<std::endl<<std::endl;
-    
+    std::cout<<std::endl<<"-------------------------------------"<<std::endl;
+    std::cout<<"Titulo: "<<titulo.nome<<std::endl <<"Valor nominal: "<<titulo.valorNominal<<std::endl<<std::endl;
+
     // write column headings
     Size widths[] = { 35, 14 };
     std::cout << std::setw(widths[0]) << std::left << "Method" << std::setw(widths[1]) << std::left << "European"<< std::endl;
