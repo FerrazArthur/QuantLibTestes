@@ -77,4 +77,15 @@ std::vector<Titulo> lerArquivo(std::string nomeArquivo)
     return titulos;
 }
 
+double fluxoCaixa(Titulo titulo)
+{
+    try{
+        return (titulo.valorNominal/pow((1+titulo.taxaJuros), (double)titulo.prazo));
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Erro inesperado durante calculo do fluxo de caixa: " << e.what() << std::endl;
+    }
+        return 0;
+}
 

@@ -1,17 +1,36 @@
-//#include <ql/quantlib.hpp>
+#include <ql/qldefines.hpp>
+#if !defined(BOOST_ALL_NO_LIB) && defined(BOOST_MSVC)
+#  include <ql/auto_link.hpp>
+#endif
+#include <ql/instruments/vanillaoption.hpp>
+#include <ql/math/integrals/tanhsinhintegral.hpp>
+#include <ql/pricingengines/vanilla/analyticeuropeanengine.hpp>
+#include <ql/pricingengines/vanilla/analyticeuropeanvasicekengine.hpp>
+#include <ql/pricingengines/vanilla/analytichestonengine.hpp>
+#include <ql/pricingengines/vanilla/baroneadesiwhaleyengine.hpp>
+#include <ql/pricingengines/vanilla/batesengine.hpp>
+#include <ql/pricingengines/vanilla/binomialengine.hpp>
+#include <ql/pricingengines/vanilla/bjerksundstenslandengine.hpp>
+#include <ql/pricingengines/vanilla/fdblackscholesvanillaengine.hpp>
+#include <ql/pricingengines/vanilla/integralengine.hpp>
+#include <ql/pricingengines/vanilla/mcamericanengine.hpp>
+#include <ql/pricingengines/vanilla/mceuropeanengine.hpp>
+#include <ql/pricingengines/vanilla/qdfpamericanengine.hpp>
+#include <ql/time/calendars/target.hpp>
+#include <ql/utilities/dataformatters.hpp>
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
+#include <math.h>
 
-class Titulo
+struct Titulo
 {
     std::string nome = "";
     long unsigned id = 0, prazo = 0;
     double valorNominal = 0, taxaJuros = 0;
-    public:
-        Titulo(long unsigned id, std::string nome, double valorNominal, long unsigned prazo, double taxaJuros);
-        void imprimeConteudo();
+    Titulo(long unsigned id, std::string nome, double valorNominal, long unsigned prazo, double taxaJuros);
+    void imprimeConteudo();
 };
 
 std::vector<std::string> splitCSVString(std::string linha);
@@ -29,3 +48,8 @@ std::vector<Titulo> lerArquivo(std::string nomeArquivo);
      */
 
 
+double fluxoCaixa(Titulo titulo);
+    /*
+     *Input: tipo titulo contendo prazo em anos, taxa de juros anuais e valor nominal de um titulo
+     *Output: Valor calculado com esses parâmetros utilizando o método do fluxo de caixa.
+     */
