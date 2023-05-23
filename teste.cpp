@@ -25,11 +25,13 @@ void testarModais(Titulo titulo)
 
     // Descrição do titulo
     std::cout<<std::endl<<"-------------------------------------"<<std::endl;
-    std::cout<<"Titulo: "<<titulo.nome<<std::endl <<"Valor nominal: "<<titulo.valorNominal<<std::endl<<std::endl;
+    std::cout<<"Titulo: "<<titulo.nome<<std::endl <<"Valor nominal: "<<titulo.valorNominal<<std::endl
+    <<"Volatilidade considerada: "<<io::volatility(volatility)<<std::endl
+    <<"Vencimento: "<<maturity.dayOfMonth()<<"/"<<maturity.month()<<"/"<<maturity.year()<<std::endl<<std::endl;
 
     // write column headings
     Size widths[] = { 35, 14 };
-    std::cout << std::setw(widths[0]) << std::left << "Method" << std::setw(widths[1]) << std::left << "European"<< std::endl;
+    std::cout << std::setw(widths[0]) << std::left << "Method" << std::setw(widths[1]) << std::left << "Preço"<< std::endl;
 
     ext::shared_ptr<Exercise> europeanExercise(new EuropeanExercise(maturity));
     
