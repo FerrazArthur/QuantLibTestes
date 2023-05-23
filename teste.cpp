@@ -31,7 +31,7 @@ void testarModais(Titulo titulo)
 
     // write column headings
     Size widths[] = { 35, 14 };
-    std::cout << std::setw(widths[0]) << std::left << "Method" << std::setw(widths[1]) << std::left << "Preço"<< std::endl;
+    std::cout << std::setw(widths[0]) << std::left << "Método" << std::setw(widths[1]) << std::left << "Preço"<< std::endl;
 
     ext::shared_ptr<Exercise> europeanExercise(new EuropeanExercise(maturity));
     
