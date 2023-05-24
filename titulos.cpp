@@ -40,7 +40,7 @@ std::vector<std::string> splitCSVString(std::string linha)
     }
     catch (const std::exception& e)
     {
-        std::cerr << "Erro inesperado na função splitCSVString durante a leitura do arquivo: " << e.what() << std::endl;
+        std::cerr << "Erro inesperado na função splitCSVString: " << e.what() << std::endl;
     }
     return tokens;
 }
@@ -67,11 +67,11 @@ std::vector<Titulo> lerArquivo(std::string nomeArquivo)
     }
     catch (const std::ifstream::failure& e)
     {
-        std::cerr << "Erro na leitura do arquivo: " << e.what() << std::endl;
+        std::cerr << "Erro na função lerArquivo: " << e.what() << std::endl;
     }
     catch (const std::exception& e)
     {
-        std::cerr << "Erro inesperado durante a leitura do arquivo: " << e.what() << std::endl;
+        std::cerr << "Erro inesperado na função lerArquivo: " << e.what() << std::endl;
     }
 
     return titulos;
@@ -84,7 +84,7 @@ double fluxoCaixa(Titulo titulo)
     }
     catch (const std::exception& e)
     {
-        std::cerr << "Erro inesperado durante calculo do fluxo de caixa: " << e.what() << std::endl;
+        std::cerr << "Erro inesperado na função fluxoCaixa: " << e.what() << std::endl;
     }
         return 0;
 }
