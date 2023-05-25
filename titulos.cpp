@@ -76,6 +76,50 @@ std::vector<Titulo> lerArquivo(std::string nomeArquivo)
 
     return titulos;
 }
+int writeCSV(std::vector<std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, QuantLib::Volatility>>, std::string>> precos)
+{
+    try
+    {
+        std::ofstream arquivo("dadosPlotar.csv");
+        std::string titulo;
+        if (arquivo.is_open())
+        {
+            for(long unsigned i = 0; i < precos.size(); i++)
+            {
+                arquivo << std::get<1>(precos[i]) << ',';
+                for(long unsigned j = 0; j < std::get<0>(precos[i]).size(); j++)
+                {
+                    if (j != 0) // escreve no começo de cada intervalo de valores, exceto no primeiro
+                    {
+                        arquivo << ',';
+                    }
+                    //escreve a volatilidade
+                    arquivo << std::get<1>(std::get<0>(precos[i])[j]) << ';';
+                    for(long unsigned x = 0; x < std::get<0>(std::get<0>(precos[i])[j]).size(); x++)
+                    {
+                        if (x != 0)//escreve no começo de cada intervalo de valores, exceto no primeiro
+                        {
+                            arquivo << ';';
+                        }
+                        arquivo << std::get<0>(std::get<0>(std::get<0>(precos[i])[j])[x]) << ';' << std::get<1>(std::get<0>(std::get<0>(precos[i])[j])[x]);
+                    }
+                }
+                arquivo << '\n';
+            }
+            arquivo.close();
+            return 0;
+        }
+        else
+        {
+            throw std::ofstream::failure("Erro ao abrir o arquivo.");
+        }
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Erro inesperado na função writeCSV: " << e.what() << std::endl;
+    }
+    return 1;
+}
 
 double fluxoCaixa(Titulo titulo)
 {

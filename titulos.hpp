@@ -53,3 +53,10 @@ double fluxoCaixa(Titulo titulo);
      *Input: tipo titulo contendo prazo em anos, taxa de juros anuais e valor nominal de um titulo
      *Output: Valor calculado com esses parâmetros utilizando o método do fluxo de caixa.
      */
+
+int writeCSV(std::vector<std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, QuantLib::Volatility>>, std::string>> precos);
+    /*
+     * Input: vetor com tupla (vetor com tupla (vetor com tupla nome do método aplicado e preço obtido) e valor para volatilidade) e nome do titulo;
+     * Output: 0 se deu tudo certo, 1 se deu errado
+     * Escreve o conteúdo do vetor em um arquivo csv, onde cada linha é um titulo, as virgulas dividem por volatilidade e ; divide por metodo
+     */
