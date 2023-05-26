@@ -76,6 +76,54 @@ std::vector<Titulo> lerArquivo(std::string nomeArquivo)
 
     return titulos;
 }
+int writeCSVHeader(std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, QuantLib::Volatility>>, std::string> titulo, std::string header, std::string path)
+{
+    try
+    {
+        //variável com nome do titulo
+        std::string nomeTitulo = std::get<1>(titulo);
+
+        //variável ponteiro para o vetor de precos por modelo e por volatilidade
+        auto& volatil = std::get<0>(titulo);//aponta volatin pro endereço de ...
+        
+        //variável para armazenar volatilidade
+        double volatilidade = 0;
+
+        std::get<0>(titulo);
+        std::ofstream arquivo(path+nomeTitulo+"precos.csv");
+        if (arquivo.is_open())
+        {
+            arquivo << header << std::endl;//escreve o cabeçalho
+            for(long unsigned i = 0; i < volatil.size(); i++)//percorre o vetor de volatilidades
+            {
+                //armazena o valor de volatilidade usado nas precificações abaixo
+                volatilidade = std::get<1>(volatil[i]);
+                for(long unsigned j = 0; j < std::get<0>(volatil[i]).size(); j++)
+                {
+                    if (j != 0) // escreve no começo de cada intervalo de valores, exceto no primeiro
+                    {
+                        arquivo << ',';
+                    }
+                    //escreve o nome do método, a volatilidade e o preco calculado
+                    arquivo << std::get<0>(std::get<0>(volatil[i])[j]) << ','
+                    << volatilidade << ',' << std::get<1>(std::get<0>(volatil[i])[j]) << std::endl;
+                }
+            }
+            arquivo.close();
+            return 0;
+        }
+        else
+        {
+            throw std::ofstream::failure("Erro ao abrir o arquivo.");
+        }
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "Erro inesperado na função writeCSV: " << e.what() << std::endl;
+    }
+    return 1;
+}
+
 int writeCSV(std::vector<std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, QuantLib::Volatility>>, std::string>> precos)
 {
     try

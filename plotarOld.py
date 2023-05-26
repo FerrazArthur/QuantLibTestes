@@ -10,6 +10,7 @@ class Titulo:
         self.dados = {}
         self.parametros = []
         self.modelosValores = {}
+        self.cor = cor
 
 def gerarCor(cores):
     '''gera cor aleatória que nao esteja no vetor cores'''
@@ -56,3 +57,5 @@ for titulo in titulos:
         plt.plot(titulo.parametros, titulo.modelosValores[nome],label=nome, color=gerarCor(cor))
     plt.legend()
     plt.show()
+
+
