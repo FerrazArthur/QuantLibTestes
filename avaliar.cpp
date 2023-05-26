@@ -43,7 +43,7 @@ void precificar(Titulo titulo, Volatility volatility, int imprimir)
         std::cout << std::setw(widths[0]) << std::left << "Método" << std::setw(widths[1]) << std::left << "Preço"<< std::endl;
 
         ext::shared_ptr<Exercise> europeanExercise(new EuropeanExercise(maturity));
-        
+
         Handle<Quote> underlyingH(ext::shared_ptr<Quote>(new SimpleQuote(underlying)));
 
         // bootstrap the yield/dividend/vol curves
@@ -53,14 +53,9 @@ void precificar(Titulo titulo, Volatility volatility, int imprimir)
 
         ext::shared_ptr<StrikedTypePayoff> payoff(new PlainVanillaPayoff(type, strike));
         ext::shared_ptr<BlackScholesMertonProcess> bsmProcess(new BlackScholesMertonProcess(underlyingH, flatDividendTS,flatTermStructure, flatVolTS));
-
+        
         // options
         VanillaOption europeanOption(payoff, europeanExercise);
-
-        // Método do fluxo de caixa
-        method = "Fluxo de caixa";
-
-        std::cout << std::setw(widths[0]) << std::left << method << std::fixed << std::setw(widths[1]) << std::setprecision(2) << std::left << fluxoCaixa(titulo) << std::endl;
 
         // Analytic formulas:
 
@@ -117,7 +112,7 @@ int main()
         {
             for(int j = 1; j < 100; j += 10)
             {
-                precificar(titulos[i], j/100.0, 1);
+                precificar(titulos[i], j/100.0, 0);
             }
         }
         return 0;

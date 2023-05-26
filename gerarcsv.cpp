@@ -60,13 +60,6 @@ std::vector<std::tuple<std::string, double>> precificar(Titulo titulo, Volatilit
         // options
         VanillaOption europeanOption(payoff, europeanExercise);
 
-        // Método do fluxo de caixa
-        method = "Fluxo de caixa";
-        //efetua calculo e salva no vetor preco
-        preco.push_back(std::tuple<std::string, double>(method, fluxoCaixa(titulo)));
-
-        std::cout << std::setw(widths[0]) << std::left << method << std::fixed << std::setw(widths[1]) << std::setprecision(2) << std::left << std::get<1>(preco.back()) << std::endl;
-
         // Analytic formulas:
 
         // Black-Scholes for European
@@ -139,7 +132,7 @@ int main()
             std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, Volatility>> volatil;
             for(int j = 1; j < 100; j += 10)
             {
-                volatil.push_back(std::tuple<std::vector<std::tuple<std::string, double>>, Volatility>(precificar(titulos[i], j/100.0, i), j/100.0));
+                volatil.push_back(std::tuple<std::vector<std::tuple<std::string, double>>, Volatility>(precificar(titulos[i], j/100.0, 1), j/100.0));
             }
             precos.push_back(std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, Volatility>>, std::string>(volatil, titulos[i].nome));
             volatil.clear();

@@ -120,16 +120,3 @@ int writeCSV(std::vector<std::tuple<std::vector<std::tuple<std::vector<std::tupl
     }
     return 1;
 }
-
-double fluxoCaixa(Titulo titulo)
-{
-    try{
-        return (titulo.valorNominal/pow((1+titulo.taxaJuros), (double)titulo.prazo));
-    }
-    catch (const std::exception& e)
-    {
-        std::cerr << "Erro inesperado na função fluxoCaixa: " << e.what() << std::endl;
-    }
-        return 0;
-}
-
