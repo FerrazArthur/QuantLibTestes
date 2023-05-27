@@ -120,13 +120,13 @@ std::vector<std::tuple<std::string, double>> precificar(Titulo titulo, Volatilit
 int main()
 {
     /*
-     * Código para armazenar em um csv os resultados dos calculos com os dados no arquivo csv enviado pelo processo seletivo, com diferentes valores para volatilidade.
+     * Código para armazenar um conjunto de testes para cada titulo em arquivos .csv, utilizando os dados no arquivo csv enviado pelo processo seletivo, com diferentes valores para volatilidade.
      */
     try
     {
-        //vetor com tupla (vetor com tupla (vetor com tupla nome do método aplicado e preço obtido) e valor para volatilidade) e nome do titulo;
-        std::vector<std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, Volatility>>, std::string>> precos;
+        std::string header = "MODELO,VARIANCIA,PRECO";
         std::vector<Titulo> titulos = lerArquivo("dados_titulos.csv");
+
         for (long unsigned i = 0; i < titulos.size(); i++)
         {
             std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, Volatility>> volatil;
@@ -134,13 +134,14 @@ int main()
             {
                 volatil.push_back(std::tuple<std::vector<std::tuple<std::string, double>>, Volatility>(precificar(titulos[i], j/100.0, 1), j/100.0));
             }
-            precos.push_back(std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, Volatility>>, std::string>(volatil, titulos[i].nome));
+            
+            if (writeCSVHeader(std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, Volatility>>, std::string>(volatil, titulos[i].nome), header, "precos/") != 0)
+            {
+                throw("Erro ao escrever os preços em arquivo csv.");
+            }
             volatil.clear();
         }
-        if (writeCSV(precos) == 0)
-            return 0;
-        else
-            throw("Erro ao escrever os preços em arquivo csv.");
+        return 0;
     }
     catch (const std::exception& e)
     {

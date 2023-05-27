@@ -1,0 +1,41 @@
+MODELO,VARIANCIA,PRECO
+Black Scholes,0.01,5063.27
+Black Vasicek Model,0.01,5050.56
+Heston semi-analytic,0.01,5063.27
+Bates semi-analytic,0.01,5063.27
+Black Scholes,0.11,5280.98
+Black Vasicek Model,0.11,5270.04
+Heston semi-analytic,0.11,5280.98
+Bates semi-analytic,0.11,5280.98
+Black Scholes,0.21,6277.8
+Black Vasicek Model,0.21,6269.55
+Heston semi-analytic,0.21,6277.8
+Bates semi-analytic,0.21,6277.8
+Black Scholes,0.31,7510.67
+Black Vasicek Model,0.31,7504.05
+Heston semi-analytic,0.31,7510.67
+Bates semi-analytic,0.31,7510.67
+Black Scholes,0.41,8770.1
+Black Vasicek Model,0.41,8764.63
+Heston semi-analytic,0.41,8770.1
+Bates semi-analytic,0.41,8770.1
+Black Scholes,0.51,9988.13
+Black Vasicek Model,0.51,9983.57
+Heston semi-analytic,0.51,9988.12
+Bates semi-analytic,0.51,9988.12
+Black Scholes,0.61,11132.7
+Black Vasicek Model,0.61,11128.9
+Heston semi-analytic,0.61,11132.7
+Bates semi-analytic,0.61,11132.7
+Black Scholes,0.71,12185.8
+Black Vasicek Model,0.71,12182.7
+Heston semi-analytic,0.71,12185.8
+Bates semi-analytic,0.71,12185.8
+Black Scholes,0.81,13137.6
+Black Vasicek Model,0.81,13135
+Heston semi-analytic,0.81,13137.6
+Bates semi-analytic,0.81,13137.6
+Black Scholes,0.91,13983.4
+Black Vasicek Model,0.91,13981.3
+Heston semi-analytic,0.91,13983.4
+Bates semi-analytic,0.91,13983.4

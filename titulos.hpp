@@ -47,6 +47,13 @@ std::vector<Titulo> lerArquivo(std::string nomeArquivo);
      * é composta por: id, nome. valornominal, prazo e taxa de juros, nessa ordem.
      */
 
+int writeCSVHeader(std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, QuantLib::Volatility>>, std::string> titulo, std::string header, std::string path);
+    /*
+     * Input: vetor com tupla (vetor com tupla (vetor com tupla nome do método aplicado e preço obtido) e valor para volatilidade) e nome do titulo;
+     * Output: 0 se deu tudo certo, 1 se deu errado
+     * Escreve o conteúdo do vetor em um arquivo csv para cada título, onde cada linha é uma precificaçao, composta por NOME DO MODELO, VOLATILIDADE, PREÇO 
+     */
+
 int writeCSV(std::vector<std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, QuantLib::Volatility>>, std::string>> precos);
     /*
      * Input: vetor com tupla (vetor com tupla (vetor com tupla nome do método aplicado e preço obtido) e valor para volatilidade) e nome do titulo;
