@@ -76,6 +76,7 @@ std::vector<Titulo> lerArquivo(std::string nomeArquivo)
 
     return titulos;
 }
+
 int writeCSVHeader(std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, QuantLib::Volatility>>, std::string> titulo, std::string header, std::string path)
 {
     try
@@ -90,7 +91,7 @@ int writeCSVHeader(std::tuple<std::vector<std::tuple<std::vector<std::tuple<std:
         double volatilidade = 0;
 
         std::get<0>(titulo);
-        std::ofstream arquivo(path+nomeTitulo+"precos.csv");
+        std::ofstream arquivo(path+nomeTitulo+".csv");
         if (arquivo.is_open())
         {
             arquivo << header << std::endl;//escreve o cabeçalho
@@ -100,10 +101,6 @@ int writeCSVHeader(std::tuple<std::vector<std::tuple<std::vector<std::tuple<std:
                 volatilidade = std::get<1>(volatil[i]);
                 for(long unsigned j = 0; j < std::get<0>(volatil[i]).size(); j++)
                 {
-                    if (j != 0) // escreve no começo de cada intervalo de valores, exceto no primeiro
-                    {
-                        arquivo << ',';
-                    }
                     //escreve o nome do método, a volatilidade e o preco calculado
                     arquivo << std::get<0>(std::get<0>(volatil[i])[j]) << ','
                     << volatilidade << ',' << std::get<1>(std::get<0>(volatil[i])[j]) << std::endl;
@@ -119,7 +116,7 @@ int writeCSVHeader(std::tuple<std::vector<std::tuple<std::vector<std::tuple<std:
     }
     catch(const std::exception& e)
     {
-        std::cerr << "Erro inesperado na função writeCSV: " << e.what() << std::endl;
+        std::cerr << "Erro inesperado na função writeCSVHeader: " << e.what() << std::endl;
     }
     return 1;
 }

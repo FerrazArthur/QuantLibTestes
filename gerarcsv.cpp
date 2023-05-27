@@ -135,7 +135,7 @@ int main()
                 volatil.push_back(std::tuple<std::vector<std::tuple<std::string, double>>, Volatility>(precificar(titulos[i], j/100.0, 1), j/100.0));
             }
             
-            if (writeCSVHeader(volatil, titulos[i].nome, header, "precos/") != 0)
+            if (writeCSVHeader(std::tuple<std::vector<std::tuple<std::vector<std::tuple<std::string, double>>, Volatility>>, std::string>(volatil, titulos[i].nome), header, "precos/") != 0)
             {
                 throw("Erro ao escrever os preços em arquivo csv.");
             }
